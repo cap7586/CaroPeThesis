@@ -11,7 +11,8 @@ This repository is for me to store everything related to my Bachelor's thesis an
 - Jupyter Notebook created
 - Downloaded different data sets
 - Checking df.info() for each data set
-- ! Interesting to read: https://www.wiwi.uni-muenster.de/ivm/sites/ivm/files/documents/forschung/diskussionspapiere/workingpaper33v2.pdf 
+- ! Interesting to read: https://www.wiwi.uni-muenster.de/ivm/sites/ivm/files/documents/forschung/diskussionspapiere/workingpaper33v2.pdf :
+  - Cools et al. (2010) or Zhao et al. (2019) have shown that the trip type influences the response to adverse weather conditions, we minimize the bias that
 
 ## Data Set Shapes - Preprocessing Stage
 - ### Würzburg:
