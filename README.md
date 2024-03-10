@@ -63,3 +63,28 @@ Investigating bicycle traffic dynamics in urban environments, particularly in ci
 - Research Significance: By focusing on these cities, our study aims to provide valuable insights into the operational characteristics of bicycle traffic in urban settings. Understanding the factors that affect cycling patterns, such as infrastructure design, topography, weather conditions, and socio-cultural factors, is crucial for urban planners, policymakers, and transportation engineers seeking to enhance bicycle mobility and promote sustainable urban development.
 
 Overall, our research endeavors to contribute to the growing body of knowledge on urban cycling by analyzing bicycle traffic data collected in Munich and Freiburg. By examining patterns, trends, and challenges related to bicycle traffic in these cities, we aim to inform evidence-based policy decisions and urban planning strategies aimed at creating more bike-friendly cities and fostering sustainable transportation systems.
+
+## About the Sensors
+These permanent monitoring stations, primarily installed for urban planning purposes, employ ground-based sensors to monitor the flow of bicycle traffic. These sensors operate continuously throughout the year, recording the passage of bicycles exclusively within designated bike lanes. Cyclists utilizing sidewalks are also detected by the sensors, although their data is not integrated into the overall count. Notably, near the Deutsches Museum, there is a publicly accessible display showcasing the daily and yearly influx of cyclists at that specific location. (Citation: https://stadt.muenchen.de/dam/jcr:9a65625e-952f-470f-b6a1-d4270f4526cb/mb190304.pdf)
+
+## Machine Learning Models
+### Bikes - Day of the year
+Several machine learning models can be suitable for predicting bike counts based on historical data from previous years. Some of the commonly used models for such time-series prediction tasks include:
+
+1. **Autoregressive Integrated Moving Average (ARIMA)**: ARIMA models are well-suited for time series data with trend and seasonality. They incorporate parameters to model auto-correlation, differencing, and moving averages.
+
+2. **Seasonal Autoregressive Integrated Moving-Average (SARIMA)**: SARIMA extends ARIMA by incorporating seasonal components. It's useful when there are repeating patterns or seasonal trends in the data.
+
+3. **Seasonal Decomposition of Time Series (STL)**: STL decomposes time series into trend, seasonality, and remainder components, making it easier to model and predict each component separately.
+
+4. **Prophet**: Prophet is an open-source forecasting tool developed by Facebook. It handles daily, weekly, and yearly seasonality, as well as holiday effects, with flexibility and ease of use.
+
+5. **Long Short-Term Memory (LSTM) networks**: LSTM networks, a type of recurrent neural network (RNN), are effective for capturing complex temporal dependencies. They excel at handling sequential data and can learn patterns over long sequences, making them suitable for time series forecasting.
+
+6. **Gradient Boosting Machines (GBM)**: GBM models, such as XGBoost, LightGBM, and CatBoost, are powerful ensemble learning methods that can handle non-linear relationships and interactions between features. They perform well with large datasets and can capture complex patterns in the data.
+
+7. **Random Forests**: Random Forests are another ensemble learning technique that works well for regression tasks. They are robust to overfitting and can handle both numerical and categorical features effectively.
+
+8. **Gated Recurrent Units (GRU)**: GRU networks, similar to LSTM networks, are designed to capture long-term dependencies in sequential data. They are computationally more efficient than LSTM networks while achieving comparable performance.
+
+The choice of model depends on various factors such as the size of the dataset, the presence of seasonality and trends, computational resources, and the interpretability of results. It's often a good practice to experiment with multiple models and select the one that performs best according to specific evaluation metrics and requirements.
