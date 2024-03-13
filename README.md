@@ -15,37 +15,8 @@ This repository is for me to store everything related to my Bachelor's thesis an
   - Cools et al. (2010) or Zhao et al. (2019) have shown that the trip type influences the response to adverse weather conditions, we minimize the bias that
 - https://opendata.duesseldorf.de/dataset/jahresübersicht-der-dauerzählstellen-radverkehr-seit-2012
 
-## Data Set Shapes - Preprocessing Stage
-- ### Würzburg:
-  - Rows: 231349
-  - Total Columns: 15
-  -    Column             Non-Null Count   Dtype  
-  - 0   Id                 231349 non-null  int64
-  - 1   Date               231349 non-null  object
-  - 2   Counts             153916 non-null  float64
-  - 3   Status             153916 non-null  object
-  - 4   Name               217150 non-null  object
-  - 5   Coordinates        217150 non-null  object
-  - 6   User Type          217150 non-null  object
-  - 7   TimeZone           217150 non-null  object
-  - 8   Interval           217150 non-null  float64
-  - 9   Sens               217150 non-null  object
-  - 10  Installation Date  217150 non-null  object
-  - 11  Counter            108553 non-null  object
-  - 12  Photos             108553 non-null  object
-  - 13  photourl           108553 non-null  object
-  - 14  photo              108553 non-null  object 
-
-- ### Munich
-- ### Augsburg:
-  - Rows: 2696 entries, ('Time', 'Dieselbrücke', 'Friedberger Straße östlich Afrabrücke', 'Friedrich-Ebert-Straße östlich Haltestelle Messe', 'Färberstraße/Gollwitzerstr.', 'Gögginger Straße südlich Rosenaustraße', 'Haunstetter Straße Höhe protestantischer Friedhof', 'Konrad Adenauer Allee Fahrradstraße', 'Postillionstraße südl. Roggenstraße', 'Rosenaustraße westlich Gögginger Straße', 'Südlich A8-Unterführung, Ostseite') 
-        Column                                             Non-Null Count  Dtype  
-     0   Zeitraum                                           2330 non-null   object 
-     1   16. September 2016 00:00 -> 1. Februar 2024 08:30  2253 non-null   object 
-
-- ### Stuttgart
-- ### Berlin
-- ### Köln
+## Time Series Analysis 
+We analyze the timestamp data to extract meaningful insights and predictions about the future. 
 
 # Interesting Information To Check
 ## Yunex Traffic
