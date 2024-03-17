@@ -1,4 +1,4 @@
-datum,uhrzeit_start,uhrzeit_ende,zaehlstelle,richtung_1,richtung_2,gesamt,min-temp,max-temp,niederschlag,bewoelkung,sonnenstunden
+datum,uhrzeit_start,uhrzeit_ende,zaehlstelle,richtung_1,richtung_2,gesamt,min.temp,max.temp,niederschlag,bewoelkung,sonnenstunden
 2023.01.01,00:00:00,23.59,Arnulf,358.0,44.0,402.0,6.4,18.5,0.0,73,7.8
 2023.01.02,00:00:00,23.59,Arnulf,781.0,64.0,845.0,3.5,14.9,0.4,81,4.2
 2023.01.03,00:00:00,23.59,Arnulf,671.0,51.0,722.0,3.7,10.4,0.7,91,0.0
