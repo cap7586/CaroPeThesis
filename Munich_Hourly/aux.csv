@@ -1,4 +1,4 @@
-,datum,uhrzeit_start,uhrzeit_ende,zaehlstelle,richtung_1,richtung_2,gesamt
+id,datum,uhrzeit_start,uhrzeit_ende,zaehlstelle,richtung_1,richtung_2,gesamt
 1,2023.12.01,00:00,00:15,Arnulf,0,0,0
 2,2023.12.01,00:15,00:30,Arnulf,0,0,0
 3,2023.12.01,00:30,00:45,Arnulf,2,0,2
