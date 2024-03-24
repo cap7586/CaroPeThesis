@@ -1,4 +1,4 @@
-datum,uhrzeit_start,uhrzeit_ende,zaehlstelle,richtung_1,richtung_2,gesamt,min-temp,max-temp,niederschlag,bewoelkung,sonnenstunden
+Date,uhrzeit_start,uhrzeit_ende,Location,richtung_1,richtung_2,Total,MinTemp,MaxTemp,RainfallVolume,bewoelkung,sonnenstunden
 2024.01.01,00:00,23.59,Erhardt,493,461,954,3.3,7.1,0.0,76,5.2
 2024.01.02,00:00,23.59,Erhardt,687,687,1374,3.0,11.1,1.0,94,0.0
 2024.01.03,00:00,23.59,Erhardt,953,928,1881,7.1,13.0,1.6,74,3.8
