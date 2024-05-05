@@ -1,0 +1,335 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{hyperref} % for URL handling
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{booktabs}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    citecolor=black
+}
+
+% Page layout
+\geometry{left=3cm, right=3cm, top=4cm, bottom=3cm}
+
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.3\textwidth]{./Images/LogoTHI.png}\par\vspace{1cm}
+    {\scshape\LARGE Technische Hochschule Ingolstadt \par}
+    \vspace{1cm}
+    {\scshape\Large Bachelor Thesis\par}
+    \vspace{1.5cm}
+    {\huge\bfseries Analysis and Prediction of Urban Bicycle Usage in Munich\par}
+    \vspace{2cm}
+    {\Large\itshape Carolina Paez\par}
+    \vfill
+    First Examiner\par
+    Prof. Dr. \textsc{Beate Navarro-Bullock}
+    \vfill
+    Second Examiner\par
+    Prof. Dr. rer. nat. \textsc{Martin Ebert}
+
+    \vfill
+
+    % Bottom of the page
+    {\large \textbf{Issue Date:} xx.05.2024 \par}
+    {\large \textbf{Submission Date:} xx.05.2024 \par}
+    {\large \textbf{Matriculation Number:} 000000 \par}
+\end{titlepage}
+
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section*{Acknowledgement}
+\addcontentsline{toc}{section}{Acknowledgement}
+\newpage
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\newpage
+
+\section{Introduction}
+\subsection{Problem Statement}
+
+\subsection{Objectives}
+The main goal of this thesis is to explore the complex relationship between weather conditions, seasonal changes and their impact on the cycling activity in the city of Munich, Germany. This research uses sensor data collected from various locations throughout the city which were combined together with weather records.
+
+In this analysis we aim to:
+\begin{itemize}
+    \item Identify Key Patterns: Uncover significant patterns and correlations that explain fluctuations in cycling activity across different times of the year.
+    \item Predict Cycling Trends: Use the insights and the pre-processed data to train different Machine Learning models that can create forecasts of future cycling activity, helping to anticipate changes in cyclist numbers.
+\end{itemize}
+
+By achieving these objectives, this research tries to contribute to the field of sustainable urban mobility and offer insights for anyone in need of those, to enhance cycling infrastructure and foster initiatives that, for example, adapt to varying weather conditions.
+
+
+\subsection{Research Structure}
+\newpage
+
+\section{Theoretical Background}
+\subsection{Introduction to the sensors}
+Bike-Counter, developed by Schuh \& Co. GmbH, is a specialized system used for monitoring bicycle traffic in urban environments. This device is different from the general vehicle detection systems, as it is specifically designed for bicycles, making it particularly useful for city planning and traffic analysis. The city of Munich employs this system at six key locations to gather data on cycling traffic patterns. It is also particularly designed for areas where both cyclists and pedestrians are present, providing reliable data while distinguishing between these two groups effectively. This capability is essential for urban areas where mixed traffic paths are common, and accurate data is needed to improve cycling infrastructure and safety measures \cite{Schuhco2023}.
+
+The system comprises pressure sensors that are installed within the road's surface. These sensors can tolerate diverse weather conditions and heavy loads. They are linked to a control unit that interprets changes in the electromagnetic field when bicycles pass over. This setup allows for the real-time collection of traffic data, accessible remotely via a dedicated online portal  \cite{Schuhco2023}.
+
+In Munich, the Bike-Counter system aids in promoting safer and more efficient cycling infrastructure. By providing precise bicycle counts, the system supplies critical data that can support the city's decisions regarding the expansion of bike lanes and improvements at busy intersections. This data is also shared publicly on Munich’s open data platform, aiding transparency and community involvement in urban planning decisions \cite{MunichOpenData2023}.
+
+The Bike-Counter was chosen by the authorities as the data collection tool, thanks to its accuracy and low maintenance requirements. It functions effectively in various environmental conditions, including extreme temperatures, rain, and snow. Its energy efficiency is another significant advantage, with the system capable of operating on minimal electric power or solar energy, which is ideal for locations lacking extensive infrastructure  \cite{Schuhco2023}.
+
+\subsection{Introduction to Time Series Analysis}
+Time series analysis looks at data points collected in order over time. This type of data can reveal patterns and trends that are not obvious when looking at data that is collected in other ways. The bicycle data collected from the different sensors in the city of Munich belongs to the Time Series type.
+
+Many time series show trends or seasonal patterns that make them complex to analyze because most traditional analysis methods expect the data to be stationary, which means that the data has statistical properties that do not change over time. To handle this, and to be able to make predictions with this data, different techniques have been developed to make non-stationary data stationary. These include methods to even out the variability across the series, removing trends through simple line-fitting techniques to make the underlying data clearer, and differencing, which is subtracting one observation from the next to remove trends and cycles.
+
+Applying these methods helps make the data fit better with the assumptions needed for effective analysis. This allows for better understanding and modeling of the data, leading to more accurate predictions. These steps are important for anyone getting into time series analysis as they provide a basis for more complex investigations into how data changes over time \cite{Palma2016}.
+
+In chapter ... the corresponding seasonality and stationarity test results from our research are shown in detail, in order to understand the data better.
+
+\subsection{Introduction to Machine Learning and the Models}
+\subsubsection{Machine Learning}
+Machine learning is considered an area within artificial intelligence which primarily focuses on the development of mathematical models which facilitate an understanding of data. The essential process involves fitting these models to historical data, enabling them to make predictions or provide insights into new data that the models have not encountered before. Understanding the different areas in which machine learning is applied is crucial for the effective deployment of these technologies \cite{VanderPlas2016}. 
+
+Machine learning strategies are generally divided into several categories, each with their unique methodologies and applications. The primary classifications are:
+\begin{itemize}
+    \item Supervised Learning
+    \item Unsupervised Learning
+    \item Reinforcement Learning
+\end{itemize}
+
+Supervised learning algorithms create a mathematical model of a data set containing both the inputs and the desired outputs. The model is trained with a set of examples to associate input data configurations with the correct output. The learning process continues until the model achieves a satisfactory level of performance. Supervised learning is often applied into two types of tasks: classification and regression. In classification tasks, the outputs are discrete labels, whereas in regression tasks, the outputs are continuous values.
+
+Unsupervised learning, on the other hand, involves analyzing data without any associated labels, allowing the algorithm to identify patterns and structure in the data independently. Common unsupervised tasks include clustering, where the goal is to find distinct groups within the data, and dimensionality reduction, which seeks to condense the information into a more manageable form without losing significant features \cite{VanderPlas2016}.
+
+Reinforcement learning, another type of Machine Learning, differs significantly as it involves learning to make decisions from actions and their consequences. In this type of ML, an agent learns to achieve a defined objective in a potentially complex environment by performing actions and receiving rewards or penalties. This method is widely used in areas such as robotics, gaming, and navigation \cite{SuttonBarto2018}.
+
+\subsubsection{Models Selection}
+As mentioned in the Objectives section, part of this study also included forecasting future bicycle volumes for a specific location in the city of Munich. Because the data is of a time series nature, we needed to choose certain machine learning models that were appropriate for processing that kind of data. The chosen models are detailed in Table 1. Given the patterns observed in the cycling data and the need for strong solutions that can handle not only seasonal changes but also other influencing factors, we chose models like CatBoost Regressor, LightGBM Regressor, Random Forest Regressor, and XGBoost, all of which are known for their high performance in handling complex, nonlinear data efficiently. Additionally, for capturing temporal dynamics and seasonality, we employed both additive and multiplicative Holt-Winters models. Temporal Convolutional Network (TCN) was selected for its ability to manage sequence prediction problems effectively, and Vector Autoregression (VAR) was included to explore interdependencies between multiple time series data streams. This diverse set of models helps us to fully understand and forecast the fluctuations in bicycle traffic, which is critical for effective urban planning and infrastructure development.
+
+\subsection{Introduction to Forecasting}
+\newpage
+
+\section{Data Collection, Processing and Analysis}
+\subsection{Getting the data and reviewing the data}
+The first part of the research consisted in obtaining all the necessary data from the Open Data Portal of the City of Munich. It is possible to access and download these data for free though the official internet platform from the City. It is available in CSV format with the possibility to get data summarized in periods as short as every 15 minutes, or daily summaries of the data collected by the sensors at each location, with the last ones including the weather conditions for each specific date (including the maximum and minimum temperatures, percentage of cloudiness, rainfall volume, and hours of sunlight) \cite{MunichOpenData2023}.\newline
+
+
+\subsection{Key Statistics}
+\subsection{Geographical Location (and selection of the location)}
+Data for the study was captured in six different locations throughout the city:
+\begin{itemize}
+    \item Arnulfstraße
+    \item Olympia Park
+    \item Hirschgarten
+    \item Erhardtstraße
+    \item Margaretenstraße
+    \item Bad-Kreuther-Str
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/locations_sensors_muc.png}
+    \caption{Location of Bike Counters}
+    \label{fig:locationsmuc}
+\end{figure}
+
+The orange points in the map from Figure 1 represent where the bike counter sensors are physically located.\newline
+
+For the daily data, we have downloaded the files from 2008 until 2023. Once all the files were stored locally, we have imported them into a Jupyter Notebook and created a Pandas' Data Frame for each of them. After checking that the format was consistent for each of the files, we have concatenated all of the Data Frames into a single one which contains all the daily data for all the locations in Munich, making it easier for further analysis. \newline
+
+After the first inspection and transformation of the data, the columns and their format were inspected and transformed next, giving as a result a single Pandas Data Frame consisting of the following columns:
+\begin{itemize}
+    \item Date: which represents the date when the data was collected.
+    \item Location: which contains the name of the location from where the data was collected.
+    \item Total: which contains the total number of bicycles that passed through that location on that specific date, in both directions.
+    \item Minimum Temperature: which contains the minimum recorded temperature for that date in the city of Munich.
+    \item Maximum Temperature: which contains the maximum recorded temperature for that date in the city of Munich.
+    \item Rainfall Volume: which contains the total volume of rain recorded on that specific date in the city of Munich.
+\end{itemize}
+
+Later, some extra columns where added as needed, in order to have more features for the forecasting models to perform better.\newline
+
+% add here a table with the initial 5 roes of the data set after the whole transformation, and also add the columns description and why they were added
+\begin{table}[htbp]
+\centering
+\caption{First 5 Rows from the Bike Usage Dataset}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+Date & Location & Total & MinTemp & MaxTemp & RainfallVolume \\ 
+\midrule
+   2008-06-01 & Arnulf & 667.0 & 12.5 &  26.7  &  0.0            \\
+   2008-06-02 & Arnulf & 1117.0 & 15.0 &  27.9  &  0.6             \\ 
+   2008-06-03 &  Arnulf & 1279.0 & 14.6 &  21.0  &  0.2           \\ 
+   2008-06-04  & Arnulf & 758.0 & 14.9 &  21.9  &  5.1          \\ 
+   2008-06-05  & Arnulf & 606.0 &  14.0   &  20.4  & 14.2           \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/DailyData/final_AllLocationsMunich_Plot.png}
+    \caption{All locations Plot}
+    \label{fig:alllocationsfirstplot}
+\end{figure}
+
+From the Figure 2 we can observe that the location "Arnulf" shows significant data gaps in the year 2021, which can be attributed to a nearby construction activities. At the location "Olympia", we observe some seasonality seasonality, and a lot of data points missing in several years. The bottom-left subplot, showing the "Hirschgarten" sensor data shows an increase in bike counts over time, but also missing data, which would make this location hard to analyze. The "Kreuther" location shows a big increase in the bicycle counts starting from 2020, which is because the counting station was widened in April that year, making it also a harder set of data for analysis. The location "Margaretenstr." displays a seasonal pattern with what it seems to be an upward trend in the bike counts. The last subplot, which is showing the data from the "Erhardtstr.", located near the Isar river and the Deutsches Museum, also shows what seems to be a rising trend in bike counts and seasonal variations, together with the highest average daily counts among all the observed locations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/DailyData/avg_all_locations_years.png}
+    \caption{Average total of bicycles counted per year and location, to better visualize the trends.}
+    \label{fig:alllocationsavgyearsplot}
+\end{figure}
+
+\subsection{Daily Data}
+
+\subsubsection{Key Statistics}
+As observed from the plots from figures 2 and 3, "Erhardt" is one of the locations with very high bike counts. This suggests that it is a popular route for cyclists, potentially influenced by its geographical location or connectivity to key areas in the city (it is right next to the Isar river, relatively close to Isartor, which is one of the main routes to access the city center when coming from the east). Since high traffic volumes can provide rich data for understanding peak usage times, cyclist behavior, and the impact of environmental factors on cycling frequency, the location's high usage makes it ideal for studying the impact of seasonal changes and special events on cycling patterns. 
+
+As a next step, a closer look into the Erhardt's location data was taken, together with the 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/DailyData/avgtemp_erhardt_all.png}
+    \caption{In green: average daily temperature in Munich. In pink: total number of bikes counted on that day in the location "Erhardt".}
+    \label{fig:avgtempandtotalerhardt}
+\end{figure}
+
+
+
+\subsection{15-Min Data}
+\subsubsection{Key Statistics}
+\subsubsection{Influence of COVID-19}
+\newpage
+
+\section{Statistical Test for Time Series Data}
+\subsection{Seasonality Test}
+\subsection{Stationarity Test}
+\newpage
+
+\section{Forecasting using Python}
+\subsection{Vector Autoregression}
+\subsection{Holt-Winters Model}
+\subsection{TCN}
+\subsection{Prophet}
+\subsection{XGBoost}
+\subsection{Random Forest Regressor}
+\newpage
+
+\section{Results and Conclusion}
+\subsection{Results}
+\subsubsection{Daily Data}
+
+\paragraph{Vector Autoregression}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/VAR_Daily.png}
+    \caption{VAR Model Prediction Plot}
+    \label{fig:varmodelplot}
+\end{figure}
+
+The Figure 1 shows a comparison between the actual total counts of bike usage, represented in green, and the forecasted totals in red, generated by the VAR model for the beginning of 2024. The red line, which represents the predicted bike usage, consistently appears below the actual values, suggesting that the VAR model tends to underestimate the peaks in bike usage. This underestimation indicates the model's limited ability to capture sudden changes in bike usage, which are possibly driven by external factors not fully accounted for by this model.
+
+The predictive performance of the VAR model, as indicated by the provided metrics, shows a Prediction MSE of 1,424,322, a Prediction RMSE of 1193.45, and a Prediction MAE of 999.51.
+
+These results show that although the VAR model helps us get a basic idea of trends in bicycle usage, it might not be very useful for real-world applications without some improvements or adding more detailed data. This first attempt at using the model highlights that we need to either make the model more complex or try different methods that could better handle the ups and downs and seasonal changes in how often people in the city use bicycles.
+
+\paragraph{Holt-Winters Model}
+The next model trained with the Bicycle Data was the Holt-Winters Model, both in Additive and Multiplicative types.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/HW_Mul_Daily.png}
+    \caption{Holt-Winters Multiplicative Model Prediction Plot}
+    \label{fig:hwmulplot}
+\end{figure}
+
+The Holt-Winters Multiplicative model, in Figure 2, overestimates the actual bicycle usage significantly during several periods. This tendency to predict higher values suggests that while the model effectively captures the upward seasonal trends, it struggles to accurately match the actual changes in bike usage. The high error metrics—MSE over 6.6 million, RMSE over 2500, and MAE near 2000—show the model's limitations in accurately forecasting bicycle traffic, especially during peak periods. These results suggest a need for adjusting the model's seasonal components or exploring alternative forecasting approaches that might provide a more balanced prediction accuracy throughout the year.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/HW_Add_Daily.png}
+    \caption{Holt-Winters Additive Model Prediction Plot}
+    \label{fig:hwaddplot}
+\end{figure}
+
+The Holt-Winters Additive Model, in Figure 3, shows a closer alignment with actual bicycle usage trends compared to the Multiplicative version, yet it still shows inconsistencies in predicting exact daily fluctuations. It seems to perform better, following the general trend, but the model’s Prediction MSE and RMSE values indicate a considerable average error and variance in predictions. With an MAE of over 1000, the model shows a need for further adjustment to enhance its day-to-day prediction accuracy. The results suggest that there can be potential improvements in modeling the additive seasonal effects or incorporating additional variables that could affect daily bicycle usage dynamics.
+
+\paragraph{Temporal Convolutional Network}
+TCN
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/TCN_Daily.png}
+    \caption{TCN Model Prediction Plot}
+    \label{fig:tcnmodelplot}
+\end{figure}
+
+\paragraph{XGBoost}
+XGBoost
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/XGBoost_Daily.png}
+    \caption{XGBoost Model Prediction Plot}
+    \label{fig:xgboostmodelplot}
+\end{figure}
+
+\paragraph{Random Forest Regressor}
+Random Forest Regressor
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Images/DailyData/RFR_Daily.png}
+    \caption{Random Forest Regressor Model Prediction Plot}
+    \label{fig:rfrmodelplot}
+\end{figure}
+
+\paragraph{LightGBM Regressor}
+LightGBM Regressor
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/DailyData/LGBM_Daily.png}
+    \caption{LightGBM Regressor Model Prediction Plot}
+    \label{fig:lgbmmodelplot}
+\end{figure}
+
+\paragraph{CatBoost Regressor}
+CatBoost Regressor
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/DailyData/CatBoost_Daily.png}
+    \caption{CatBoost Regressor Model Prediction Plot}
+    \label{fig:catboostmodelplot}
+\end{figure}
+
+\subsubsection{Hourly Data}
+\subsection{Conclusion}
+
+
+\newpage
+
+\bibliographystyle{ieeetr} % Using IEEE transaction style which is numerically based
+\bibliography{references}
+
+\end{document}
